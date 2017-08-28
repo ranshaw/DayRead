@@ -1,0 +1,39 @@
+{
+  "pages":[
+    "pages/news/news",
+    "pages/blogs/blogs",
+    "pages/movies/movies"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "DayRead",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color":"#8a8a8a",
+    "selectedColor":"#d81e06",
+    "borderStyle":"#000",
+    "position":"bottom",
+    "list": [
+      {
+        "pagePath":"pages/news/news",
+        "text":"新闻",
+        "iconPath": "images/tab_bar/news.png",
+        "selectedIconPath": "images/tab_bar/news-active.png"
+      },
+      {
+        "pagePath":"pages/blogs/blogs",
+        "text":"博客",
+        "iconPath": "images/tab_bar/blogs.png",
+        "selectedIconPath": "images/tab_bar/blogs-active.png"
+      },
+      {
+        "pagePath":"pages/movies/movies",
+        "text":"电影",
+        "iconPath": "images/tab_bar/movies.png",
+        "selectedIconPath": "images/tab_bar/movies-active.png"
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+/**index.wxss**/
+.swiper-wrap {
+    width: 100%;
+    height: 380rpx;
+}
+.slides-img {
+    width: 100%;
+    height: 380rpx;
+}
+
+.slides-title {
+    position: absolute;
+    left: 0  ;
+    bottom: 0  ;
+    width: 100%;
+    height: 80rpx;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 8%, rgba(0, 0, 0, 0.24) 40%, rgba(0, 0, 0, 0.29) 47%, rgba(0, 0, 0, 0.65) 95%);
+}
+
+.slides-title view {
+    color: #ffffff;
+    font-weight: bold;
+    font-size:28rpx;
+    margin-top:34rpx;
+    margin-left:30rpx;
+}

@@ -1,0 +1,23 @@
+<!--news.wxml-->
+<view class="app-flex1">
+    <swiper
+            indicator-dots="{{slides.indicatorDots}}"
+            indicator-color="{{slides.indicatorColor}}"
+            indicator-active-color="{{slides.indicatorActiveColor}}"
+            autoplay="{{slides.autoPlay}}"
+            interval="{{slides.interval}}"
+            class="swiper-wrap"
+    >
+        <block wx:for="{{slides.images}}">
+            <swiper-item>
+                <image class="slides-img" src="{{item.imgUrl}}"/>
+                <view  class="slides-title">
+                    <view>{{item.title}}</view>
+                </view>
+            </swiper-item>
+        </block>
+
+    </swiper>
+
+
+</view>

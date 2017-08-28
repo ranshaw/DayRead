@@ -1,0 +1,26 @@
+{
+  "name": "dayread",
+  "version": "1.0.0",
+  "description": "A website for better reading",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ranshaw",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "koa": "^2.3.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-compress": "^2.0.0",
+    "koa-cors": "0.0.16",
+    "koa-json": "^2.0.2",
+    "koa-logger": "^3.0.1",
+    "koa-router": "^7.2.1",
+    "koa-static": "^4.0.1",
+    "mongoose": "4.11.6",
+    "node-schedule": "^1.2.4",
+    "phantom": "^4.0.5",
+    "request": "^2.81.0"
+  }
+}
