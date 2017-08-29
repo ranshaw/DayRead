@@ -43,9 +43,9 @@ const { douban } = require('./movies/douban/index');
 router.get('/movies/douban',douban);
 
 /*公众号*/
-const {zaoDu,refreshWx} = require('./weixin/index');
+const {account,refreshWx} = require('./weixin/index');
 
-router.get('/weixin/zaoDu',zaoDu);
+router.get('/weixin/account',account);
 
 module.exports.register = (app) => {
   app.use(router.middleware());

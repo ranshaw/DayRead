@@ -16,7 +16,7 @@ let table = createTable('weiXin', {
   articleList: Array
 });
 
-async function zaoDu(...arg) {
+async function account(...arg) {
   let res = arg[0].response,
 	  req = arg[0].request,
 	  hour = new Date().getHours(),
@@ -30,7 +30,19 @@ async function zaoDu(...arg) {
 	return res
   });
 
-  res.body = articleList;
+  if(articleList.info[0].articleList.length > 0) {
+	res.body = {
+	  code:0,
+	  info:articleList.info[0].articleList
+	};
+  } else {
+	res.body = {
+	  code:1,
+	  info:'获取文章失败！'
+	};
+  }
+
+
 
 }
 
@@ -130,6 +142,6 @@ async function getList(searchKey) {
 }
 
 module.exports = {
-  zaoDu,
+  account,
   refreshWx
 };

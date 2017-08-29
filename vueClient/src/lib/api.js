@@ -8,7 +8,7 @@ module.exports  = function (Vue,axios ) {
 
   /*配置axios*/
   const instance = axios.create({
-	baseURL: 'http://192.168.31.159:3002',
+	baseURL: 'http://192.168.1.238:3002',
 	timeout: 5000,
 	headers: {
 	  "content-type":"application/json",
@@ -40,7 +40,11 @@ module.exports  = function (Vue,axios ) {
 	zxu:'/blog/zxu',
 	zxuPrev:'/blog/zxuPrev',
 	bole:'/blog/bole',
-	bolePrev:'/blog/bolePrev'
+	bolePrev:'/blog/bolePrev',
+	zaoDu:'/weixin/account?key=前端早读课',
+	daQuan:'/weixin/account?key=前端大全',
+	site360:'/weixin/account?key=奇舞周刊',
+	alp:'/weixin/account?key=前端之巅'
   }
 
   };

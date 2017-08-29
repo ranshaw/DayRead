@@ -8,6 +8,12 @@
                 </mt-header>
                 <Blog></Blog>
             </mt-tab-container-item>
+            <mt-tab-container-item id="wexin">
+                <mt-header fixed title="公 众 号">
+                    <mt-button slot="right">分享</mt-button>
+                </mt-header>
+                <WeXin></WeXin>
+            </mt-tab-container-item>
             <mt-tab-container-item id="news">
                 <mt-header fixed title="新 闻">
                     <mt-button slot="right">分享</mt-button>
@@ -27,6 +33,10 @@
                 <i slot="icon" class='iconfont icon-blog iconFontSize' ></i>
                 博客
             </mt-tab-item>
+            <mt-tab-item id="wexin">
+                <i slot="icon" class='iconfont icon-wenzhang iconFontSize'></i>
+                公众号
+            </mt-tab-item>
             <mt-tab-item id="news">
                 <i slot="icon" class='iconfont icon-NEWS-copy iconFontSize'></i>
                 新闻
@@ -42,6 +52,7 @@
 <script>
   import {Tabbar, TabItem, TabContainer, TabContainerItem, Header} from 'mint-ui';
   import  Blog from './blog/index.vue';
+  import  WeXin from './wx/index.vue';
   export default({
 	data: function () {
 	  return {
@@ -55,7 +66,8 @@
 	  "mt-tab-container": TabContainer,
 	  "mt-tab-container-item": TabContainerItem,
 	  "mt-header": Header,
-	  Blog
+	  Blog,
+	  WeXin
 	},
 	methods: {
 

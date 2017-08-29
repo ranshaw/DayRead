@@ -13,14 +13,13 @@
   export default ({
 	data () {
 	  return {
-		type: 'blog',
-		selected:'jueJin',
+		type: 'wx',
+		selected:'zaoDu',
 		titleList:[
-		  {title: '掘金', id: 'jueJin',page:1},
-		  {title: '极客头条', id: 'jiKe',page:1},
-		  {title: 'SF', id: 'sf',page:1},
-		  {title: '伯乐在线', id: 'bole',page:1},
-		  {title: '张鑫旭', id: 'zxu',page:1}
+		  {title: '前端早读课', id: 'zaoDu',page:1},
+		  {title: '前端大全', id: 'daQuan',page:1},
+		  {title: '奇舞周刊', id: 'site360',page:1},
+		  {title: '前端之巅', id: 'alp',page:1}
 		]
 	  }
 	},
