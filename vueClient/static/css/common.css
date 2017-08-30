@@ -1,3 +1,5 @@
+
+/*字体*/
 .f26 {
     font-size:0.26rem;
 }
@@ -6,4 +8,26 @@
 }
 .f32 {
     font-size:0.32rem;
+}
+
+.app-flex1{
+    flex:1;
+}
+.app-flex-row{
+    display:flex;
+    flex-direction:row;
+}
+.app-flex-column{
+    display:flex;
+    flex-direction:column;
+}
+.app-flex-center{
+    align-items:center;
+    justify-content:center;
+}
+.app-cross-center{
+    align-items:center;
+}
+.app-space-between{
+    justify-content:space-between;
 }

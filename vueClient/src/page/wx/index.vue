@@ -1,5 +1,6 @@
 <template>
     <div>
+        <t-header tit="公 众 号"></t-header>
         <NavBarContent
                 :typeNow="type"
                 :selectedNow="selected"
@@ -10,6 +11,7 @@
 
 <script>
   import NavBarContent from '../../components/NavBarContent.vue'
+  import Header from '../../components/Header.vue'
   export default ({
 	data () {
 	  return {
@@ -24,7 +26,8 @@
 	  }
 	},
 	components: {
-	  NavBarContent
+	  NavBarContent,
+	  "t-header": Header
 	}
   })
 </script>

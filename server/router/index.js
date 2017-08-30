@@ -36,6 +36,7 @@ router.get('/wangyi/slides',slides);
 router.get('/wangyi/news',newsList);
 router.get('/hot/baidu',baidu);
 router.get('/hot/weibo',weibo);
+router.get('/hot/sougou',sougou);
 
 /*电影*/
 const { douban } = require('./movies/douban/index');

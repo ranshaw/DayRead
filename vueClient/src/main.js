@@ -8,7 +8,7 @@ import axios from 'axios'
 import regeneratorRuntime from './lib/regeneratorRuntime'
 import MintUi from 'mint-ui'
 import 'mint-ui/lib/style.css'
-import rem from './lib/rem';
+
 
 
 Vue.use(regeneratorRuntime);

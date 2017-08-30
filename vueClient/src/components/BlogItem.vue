@@ -38,7 +38,7 @@
         font-size: 0.36rem;
         border-bottom: 1px solid #eee;
         text-align: left;
-        padding: 0.4rem 0.3rem;
+        padding: 0.4rem 0.3rem 0.2rem;
         box-sizing: border-box;
         overflow: hidden;
         position: relative;

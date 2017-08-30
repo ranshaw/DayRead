@@ -3,7 +3,7 @@
         <mt-navbar v-model="selected"  class="betterScroll" >
             <div :style="{width:wrapWid}" @click.stop="updateData">
                 <mt-tab-item  v-for="item  in titleList"
-                             :class="titleList.length > 4 ? 'tt-overflow': '' "
+                              :class="titleList.length > 4 ? 'tt-overflow': '' "
                               :id="item.id">{{item.title}}</mt-tab-item>
             </div>
         </mt-navbar>
@@ -205,8 +205,10 @@
         padding-top:0.5rem;
         display: flex;
         justify-content:center;
+        margin-bottom:0.5rem;
     }
     .noMore {
         margin-top:0.2rem;
+        margin-bottom:0.5rem;
     }
 </style>

@@ -112,6 +112,7 @@
 
   if (!document.addEventListener) return;
   window.addEventListener(_self.resizeEvt,_self.changePage,false);
-  window.addEventListener('load', _self.changePage,false);
+  // window.addEventListener('load', _self.changePage,false);
+  _self.changePage();
   // document.addEventListener('DOMContentLoaded', _self.changePage, false);
 })(document);
