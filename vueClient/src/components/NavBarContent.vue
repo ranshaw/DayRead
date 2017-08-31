@@ -1,17 +1,17 @@
 <template>
     <div class="content">
-        <mt-navbar v-model="selected"  class="betterScroll" >
+       <!-- <mt-navbar v-model="selected"  class="betterScroll" >
             <div :style="{width:wrapWid}" @click.stop="updateData">
                 <mt-tab-item  v-for="item  in titleList"
                               :class="titleList.length > 4 ? 'tt-overflow': '' "
                               :id="item.id">{{item.title}}</mt-tab-item>
             </div>
-        </mt-navbar>
+        </mt-navbar>-->
+        <top-nav-bar :titleList="titleList" :selected="selected"></top-nav-bar>
 
         <!-- tab-container -->
-        <mt-tab-container v-model="selected">
+        <mt-tab-container  >
             <div class="placeholder"></div>
-
             <ul
                     v-infinite-scroll="loadMore"
                     infinite-scroll-disabled="loading"
@@ -36,6 +36,7 @@
   import {Navbar, TabItem, Spinner } from 'mint-ui';
   import BScroll from 'better-scroll';
   import BlogItem from './BlogItem.vue';
+  import TopNavBar from './TopNavBar.vue'
 
   export default({
     props:['typeNow','selectedNow','titleListNow'],
@@ -58,8 +59,9 @@
 	components: {
 	  "mt-navbar": Navbar,
 	  "mt-tab-item": TabItem,
-      "blog-item":BlogItem,
-      "mt-spinner":Spinner
+       BlogItem,
+      "mt-spinner":Spinner,
+	  TopNavBar
 	},
 	methods: {
       getList (path) {
@@ -132,12 +134,12 @@
     },
 	mounted () {
 	  /*需要在rem计算完成后执行*/
-      setTimeout(() => {
+     /* setTimeout(() => {
 		new BScroll('.betterScroll',{
 		  click:true,
 		  scrollX:true
 		});
-      },1);
+      },1);*/
 
         console.log('选中1',this.selected)
       this.getList(this.path[this.selected]);
