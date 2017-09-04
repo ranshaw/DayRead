@@ -1,13 +1,7 @@
 <template>
     <div class="content">
-       <!-- <mt-navbar v-model="selected"  class="betterScroll" >
-            <div :style="{width:wrapWid}" @click.stop="updateData">
-                <mt-tab-item  v-for="item  in titleList"
-                              :class="titleList.length > 4 ? 'tt-overflow': '' "
-                              :id="item.id">{{item.title}}</mt-tab-item>
-            </div>
-        </mt-navbar>-->
-        <top-nav-bar :titleList="titleList" :selected="selected"></top-nav-bar>
+
+        <top-nav-bar :titleList="titleList" :selected="initSelected"></top-nav-bar>
 
         <!-- tab-container -->
         <mt-tab-container  >
@@ -37,13 +31,15 @@
   import BScroll from 'better-scroll';
   import BlogItem from './BlogItem.vue';
   import TopNavBar from './TopNavBar.vue'
+  import { mapState } from 'vuex'
 
   export default({
     props:['typeNow','selectedNow','titleListNow'],
 	data: function () {
 	  return {
 	    type:this.typeNow,
-		selected: this.selectedNow,
+        initSelected:this.selectedNow,
+//		selected: this.$store.state.selectedNow, /*selected的值无法随着state的值变化更新，采用mapState()*/
 		titleList:this.titleListNow,
         blogsList:[],                       //当前展示的数据
         blogs:{},                           //储存已经请求过的数据
@@ -52,9 +48,9 @@
 	  }
 	},
     computed:{
-      wrapWid () {
-        return this.titleList.length < 5 ? '100%': 'auto'
-      }
+    ...mapState({
+	  selected:'selectedNow'
+    })
     },
 	components: {
 	  "mt-navbar": Navbar,
@@ -125,23 +121,24 @@
       },
       loadMore () {
         console.log('到底了');
-		console.log('选中到底',this.selected)
+		console.log('选中到底',this.selected);
         /*第一页已经加载后，才能请求第二页*/
         if( this.blogs[this.selected]) {
 		  this.getPrevList();
 		}
       }
     },
+	watch:{
+	  selected:{
+		handler:function () {
+		  this.updateData()
+		},
+        deep:true
+      }
+	},
 	mounted () {
-	  /*需要在rem计算完成后执行*/
-     /* setTimeout(() => {
-		new BScroll('.betterScroll',{
-		  click:true,
-		  scrollX:true
-		});
-      },1);*/
 
-        console.log('选中1',this.selected)
+      console.log('选中',this.selected)
       this.getList(this.path[this.selected]);
 
     }

@@ -32,8 +32,8 @@ const { sougou }          = require('./news/sougou/index');
 const { baidu }          = require('./news/baidu/index');
 const { weibo }          = require('./news/weibo/index');
 
-router.get('/wangyi/slides',slides);
-router.get('/wangyi/news',newsList);
+router.get('/wangYi/slides',slides);
+router.get('/wangYi/news',newsList);
 router.get('/hot/baidu',baidu);
 router.get('/hot/weibo',weibo);
 router.get('/hot/sougou',sougou);

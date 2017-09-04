@@ -3,5 +3,8 @@
  */
 
 export default {
-
+	changeSelected (state,selectedNow) {
+	  console.log('当前',selectedNow)
+	  state.selectedNow = selectedNow;
+	}
 }

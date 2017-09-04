@@ -11,7 +11,7 @@ import getters from './getters'
 Vue.use(Vuex);
 
 const state = {
-
+  selectedNow:''
 };
 
 export default new Vuex.Store({

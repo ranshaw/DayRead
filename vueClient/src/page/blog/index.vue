@@ -1,11 +1,11 @@
 <template>
     <div>
         <t-header tit="博 客"></t-header>
-        <NavBarContent
+        <nav-bar-content
                 :typeNow="type"
                 :selectedNow="selected"
                 :titleListNow="titleList"
-        ></NavBarContent>
+        ></nav-bar-content>
     </div>
 </template>
 

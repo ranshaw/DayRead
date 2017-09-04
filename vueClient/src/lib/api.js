@@ -44,7 +44,8 @@ module.exports  = function (Vue,axios ) {
 	zaoDu:'/weixin/account?key=前端早读课',
 	daQuan:'/weixin/account?key=前端大全',
 	site360:'/weixin/account?key=奇舞周刊',
-	alp:'/weixin/account?key=前端之巅'
+	alp:'/weixin/account?key=前端之巅',
+	slides:'/wangYi/slides'
   }
 
   };
