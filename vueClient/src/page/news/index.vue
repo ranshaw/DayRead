@@ -28,7 +28,8 @@
 		swipeList: [],
 		selected:'wangYi',
 		titleList:[
-		  {title: '网易', id: 'wangYi',page:1}
+		  {title: '网易', id: 'wangYi',page:1},
+		  {title: '头条', id: 'touTiao',page:1}
 		]
 	  }
 	},

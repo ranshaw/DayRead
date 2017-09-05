@@ -31,12 +31,14 @@ const { slides,newsList } = require('./news/wangyi/index');
 const { sougou }          = require('./news/sougou/index');
 const { baidu }          = require('./news/baidu/index');
 const { weibo }          = require('./news/weibo/index');
+const { touTiaoNewsList }       = require('./news/toutiao/index');
 
 router.get('/wangYi/slides',slides);
 router.get('/wangYi/news',newsList);
 router.get('/hot/baidu',baidu);
 router.get('/hot/weibo',weibo);
 router.get('/hot/sougou',sougou);
+router.get('/toutiao/news',touTiaoNewsList);
 
 /*电影*/
 const { douban } = require('./movies/douban/index');
