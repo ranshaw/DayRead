@@ -16,7 +16,7 @@
   import BScroll from 'better-scroll';
   import {mapActions} from 'vuex'
   export default({
-	props: ['titleList', 'selected'],
+	props: ['titleList', 'selected','type'],
 	data () {
 	  return {
 		selectedNow: this.selected
@@ -38,19 +38,23 @@
     watch:{
 	  selectedNow:function () {
 	    console.log('上一个状态',this.$store.state.selectedNow);
-	    this.isSelected()
+        this.$router.push(this.selectedNow);
+	    this.isSelected();
       }
     },
 	mounted () {
         /*需要在rem计算完成后执行*/
-	  setTimeout(() => {
+	  setTimeout(function () {
 		new BScroll('.betterScroll', {
 		  click: true,
 		  scrollX: true
 		});
 	  }, 1);
+
+	  /*根据路由更新选中值*/
+      this.selectedNow = this.$route.path.split('/')[2];
 	  this.isSelected();
-      console.log('aaaa',this.selected)
+
 	}
   })
 </script>
@@ -64,6 +68,7 @@
         border-bottom: 1px solid #eee;
         position: fixed;
         z-index: 1;
+        top:0.8rem;
     }
 
     .mint-navbar > div {

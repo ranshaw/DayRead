@@ -30,7 +30,7 @@
 		  {
 			title: '新闻',
 			icon: 'iconfont icon-NEWS-copy iconFontSize',
-			router: '/news'
+			router: '/news/wangYi'
 		  },
 		  {
 			title: '电影',

@@ -12,20 +12,24 @@ async function touTiaoNewsList(...arg) {
 
   await  new Promise((resolve,reject) => {
 
-	request(url,(error,res,body) => {
+	(function getNewsList() {
+	  request(url,(error,res,body) => {
 
-	  if(!error && res.statusCode === 200) {
-		resolve({
-		  code:0,
-		  info:JSON.parse(body)
-		})
-	  } else {
-		reject({
-		  code:1,
-		  info:`获取数据失败${error}`
-		})
-	  }
-	})
+		if(!error && res.statusCode === 200) {
+		  resolve({
+			code:0,
+			info:JSON.parse(body)
+		  })
+		} else {
+		  getNewsList();
+		 /* reject({
+			code:1,
+			info:`获取数据失败${error}`
+		  })*/
+		}
+	  })
+	})()
+
   }).then((val) => {
 	news = val;
   },(err) => {

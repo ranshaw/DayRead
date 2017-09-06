@@ -11,24 +11,37 @@ export default new Router({
   routes: [
 	{
 	  path: '*',
-	  redirect: '/blog'
+	  redirect: '/blog/jueJin'
 	},
 	{
 	  path: ' ',
-	  redirect: '/blog'
+	  redirect: '/blog/jueJin'
 	},
 	{
-	  path: '/blog',
+	  path: '/blog/:title',
 	  name: 'blog',
-	  component: Blog
+	  component: Blog,
+	  beforeEnter (to,from,next)  {
+	    console.log(to);
+	    console.log(from);
+		next()
+	  },
+	  beforeRouteLeave (to,from,next) {
+		console.log(to);
+		console.log(from)
+	  }
 	},
 	{
 	  path: '/wx',
+	  redirect:'/wx/zaoDu'
+	},
+	{
+	  path: '/wx/:title',
 	  name: 'wx',
 	  component: WeXin
 	},
 	{
-	  path: '/news',
+	  path: '/news/:title',
 	  name: 'news',
 	  component: News
 	},

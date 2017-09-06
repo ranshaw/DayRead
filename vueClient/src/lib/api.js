@@ -45,7 +45,10 @@ module.exports  = function (Vue,axios ) {
 	daQuan:'/weixin/account?key=前端大全',
 	site360:'/weixin/account?key=奇舞周刊',
 	alp:'/weixin/account?key=前端之巅',
-	slides:'/wangYi/slides'
+	JS:'/weixin/account?key=前端JavaScript',
+	QX:'/weixin/account?key=技术最前线',
+	foreign:'/weixin/account?key=前端外刊评论',
+	wangYiSlides:'/wangYi/slides'
   }
 
   };

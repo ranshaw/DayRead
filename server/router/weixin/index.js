@@ -42,14 +42,12 @@ async function account(...arg) {
 	};
   }
 
-
-
 }
 
 async function refreshWx() {
   let hour = new Date().getHours(),
 	  articleList,
-	  searchKey = ['前端早读课', '前端大全', '奇舞周刊','前端之巅'],
+	  searchKey = ['前端早读课', '前端大全', '奇舞周刊','前端之巅','前端JavaScript','技术最前线','前端外刊评论'],
 	  resBody;
 
   articleList = searchKey.map(getList);

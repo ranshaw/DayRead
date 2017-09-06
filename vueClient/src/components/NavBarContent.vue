@@ -1,7 +1,7 @@
 <template>
     <div class="content">
 
-        <top-nav-bar :titleList="titleList" :selected="initSelected"></top-nav-bar>
+        <top-nav-bar :titleList="titleList" :selected="initSelected" :type="type"></top-nav-bar>
 
         <!-- tab-container -->
         <mt-tab-container  >
@@ -138,10 +138,11 @@
 	},
 	mounted () {
 
-      console.log('选中',this.selected)
+      console.log('选中',this.selected,`${this.type}SelectedNow`)
       this.getList(this.path[this.selected]);
 
     }
+
   })
 </script>
 
