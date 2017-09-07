@@ -104,7 +104,7 @@
     }
     .swipeItemWrap .title {
         position: absolute;
-        top:50%;
+        top:60%;
         -webkit-transform: translateY(-50%);
         -moz-transform: translateY(-50%);
         -ms-transform: translateY(-50%);
@@ -114,7 +114,7 @@
     }
     .swipeItemWrap .title-num {
         position: absolute;
-        top:50%;
+        top:60%;
         -webkit-transform: translateY(-50%);
         -moz-transform: translateY(-50%);
         -ms-transform: translateY(-50%);

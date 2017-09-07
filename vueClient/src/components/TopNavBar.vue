@@ -40,6 +40,12 @@
 	    console.log('上一个状态',this.$store.state.selectedNow);
         this.$router.push(this.selectedNow);
 	    this.isSelected();
+      },
+      '$route' (to,from) {
+
+       /*回到上次点击的路由*/
+		this.selectedNow = this.$route.path.split('/')[2];
+		this.isSelected();
       }
     },
 	mounted () {
@@ -51,10 +57,9 @@
 		});
 	  }, 1);
 
-	  /*根据路由更新选中值*/
-      this.selectedNow = this.$route.path.split('/')[2];
+        /*根据路由更新选中值*/
+	  this.selectedNow = this.$route.path.split('/')[2];
 	  this.isSelected();
-
 	}
   })
 </script>

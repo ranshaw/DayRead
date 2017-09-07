@@ -66,6 +66,11 @@
             this.blogsList = res.data.info;
             let name = this.selected;
             this.blogs[name] = [].concat(res.data.info);
+            /*数据保存到state中*/
+            this.$store.dispatch('saveLists',{
+              type:this.type,
+              lists:this.blogs
+            })
           } else {
 
           }
@@ -99,7 +104,7 @@
 
             res.data.info.forEach((v) => {
               this.blogsList.push(v);
-              this.blogs[this.selected].push(v);
+//              this.blogs[this.selected].push(v);
             });
 			this.loading = false;
           } else {
@@ -113,6 +118,7 @@
         this.blogsList  = [];
 		this.noMore = false;
 		/*本地有储存从本地拿数据，没有就请求*/
+		this.blogs = this.$store.state[`${this.type}Lists`];
         if(this.blogs[this.selected]) {
           this.blogsList = this.blogs[this.selected];
         } else {
@@ -137,10 +143,8 @@
       }
 	},
 	mounted () {
-
       console.log('选中',this.selected,`${this.type}SelectedNow`)
-      this.getList(this.path[this.selected]);
-
+	  this.updateData()
     }
 
   })

@@ -5,5 +5,11 @@
 export default {
 	changeSelected ({ commit }, selectedNow) {
 		commit('changeSelected',selectedNow)
+	},
+  	saveRoute ({ commit } ,obj) {
+	  commit('saveRoute',obj)
+	},
+    saveLists({ commit },lists) {
+	  commit('saveLists',lists)
 	}
 }

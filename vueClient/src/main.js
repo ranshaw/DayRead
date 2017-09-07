@@ -16,6 +16,10 @@ Vue.use(api,axios);
 Vue.use(MintUi);
 Vue.config.productionTip = false;
 
+router.afterEach(route => {
+
+});
+
 
 new Vue({
   el: '#app',

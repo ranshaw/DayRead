@@ -22,13 +22,9 @@ export default new Router({
 	  name: 'blog',
 	  component: Blog,
 	  beforeEnter (to,from,next)  {
-	    console.log(to);
-	    console.log(from);
+	   /* console.log(to);
+	    console.log(from);*/
 		next()
-	  },
-	  beforeRouteLeave (to,from,next) {
-		console.log(to);
-		console.log(from)
 	  }
 	},
 	{
@@ -52,3 +48,4 @@ export default new Router({
 	}
   ]
 })
+

@@ -11,7 +11,11 @@ import getters from './getters'
 Vue.use(Vuex);
 
 const state = {
-  selectedNow:''
+  selectedNow:'',
+  oldBlogRoute:'',
+  oldWxRoute:'',
+  blogLists:{},
+  wxLists:{}
 };
 
 export default new Vuex.Store({
