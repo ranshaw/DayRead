@@ -6,32 +6,43 @@
             :titleList="titleList"
         ></t-top-nav>
 
-        <div class="swipeWrap">
-            <mt-swipe :auto="4000" :showIndicators="false">
-                <mt-swipe-item class="swipeItemWrap" v-for="(item,index) in swipeList">
-                    <a :href="item.originUrl">
-                        <img :src="item.imgUrl" alt="">
-                        <div class="title-wrap f32">
-                            <span class="title">{{item.title}}</span>
-                            <span class="title-num">{{index+1}}<span style="color: #999;">/</span><span class="f26">{{swipeList.length}}</span></span>
-                        </div>
-                    </a>
-                </mt-swipe-item>
-            </mt-swipe>
+        <div class="loading" v-show="!swipeList.length || loading">
+            <mt-spinner type="fading-circle" :size="60"></mt-spinner>
         </div>
+        <t-swipe-news :swipeList="swipeList"></t-swipe-news>
+
+        <ul     class="newsItem f32"
+                v-infinite-scroll="loadMore"
+                infinite-scroll-disabled="loading"
+                infinite-scroll-immediate-check="loading"
+                infinite-scroll-distance="10">
+            <li  v-for="item in newsList">
+                <t-news-item :item="item"></t-news-item>
+            </li>
+        </ul>
+
+        <div v-show="noMore"  class="noMore f32">
+            没有更多的了
+        </div>
+
     </div>
 </template>
 
 <script>
   import Header from '../../components/Header.vue'
   import TopNavBar from '../../components/TopNavBar.vue'
-  import {Swipe, SwipeItem} from 'mint-ui'
+  import SwipeNews from '../../components/SwipeNews.vue'
+  import NewsItem from '../../components/NewsItem.vue'
 
   export default ({
 	data () {
 	  return {
 		swipeList: [],
+        newsList:[],
 		selected:'wangYi',
+        WYNewsPage:9,
+		loading:false,
+		noMore:false,
 		titleList:[
 		  {title: '网易', id: 'wangYi',page:1},
 		  {title: '头条', id: 'touTiao',page:1},
@@ -51,21 +62,28 @@
 			},(err) => {
 
 			});
+            this.toReq(`wangYiNews`,`?page=${this.WYNewsPage}`).then((res) => {
+
+              if(res.status === 200 && res.data.code === 0) {
+                this.newsList = res.data.info;
+              }
+            });
             break;
         }
 
-
       },
-      toReq:function (path) {
-	    return this.api(this.path[path])
+      toReq:function (path,page='') {
+	    return this.api(this.path[path]+page)
+      },
+      loadMore:function () {
+	    
       }
     },
 	components: {
 	  't-header': Header,
-	  'mt-swipe': Swipe,
-	  'mt-swipe-item': SwipeItem,
-	  't-top-nav': TopNavBar
-
+	  't-top-nav': TopNavBar,
+      't-swipe-news':SwipeNews,
+      't-news-item':NewsItem
 	},
 	mounted () {
         this.getNews();
@@ -74,57 +92,27 @@
 </script>
 
 <style scoped>
-    .swipeWrap {
-        margin-top: 1.7rem;
+    .loading {
+        margin-top:1.7rem ;
+        padding-top:0.5rem;
+        display: flex;
+        justify-content:center;
+        margin-bottom:0.5rem;
+    }
+    .noMore {
+        margin-top:0.2rem;
+        margin-bottom:0.5rem;
     }
 
-    .swipeWrap > div {
-        height: 3.8rem;
+    .newsItem {
+        background: #f6f6f6;
+        margin-bottom:1rem;
     }
-    
-    .swipeItemWrap img{
-        width:100%;
-        height:100%;
+    .newsItem>li {
+        padding:.2rem 0;
+        border-bottom:1px solid #e5e5e5;
+        margin:0 .3rem;
     }
-    .swipeItemWrap a {
-        display: block;
-        width:100%;
-        height:100%;
-        position: relative;
-    }
-    .swipeItemWrap .title-wrap {
-        position: absolute;
-        bottom: 0;
-        width:100%;
-        height:.9rem;
-        font-size:.36rem;
-        color: #ffffff;
-        background: -webkit-linear-gradient(top,rgba(0,0,0,0) 8%,rgba(0,0,0,0.24) 40%,rgba(0,0,0,0.29) 47%,rgba(0,0,0,0.65) 95%);
-        background: linear-gradient(to bottom,rgba(0,0,0,0) 8%,rgba(0,0,0,0.24) 40%,rgba(0,0,0,0.29) 47%,rgba(0,0,0,0.65) 95%);
-    }
-    .swipeItemWrap .title {
-        position: absolute;
-        top:60%;
-        -webkit-transform: translateY(-50%);
-        -moz-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-        -o-transform: translateY(-50%);
-        transform: translateY(-50%);
-        left:.3rem;
-    }
-    .swipeItemWrap .title-num {
-        position: absolute;
-        top:60%;
-        -webkit-transform: translateY(-50%);
-        -moz-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-        -o-transform: translateY(-50%);
-        transform: translateY(-50%);
-        right:.1rem;
-        color: #f33;
-    }
-    .swipeItemWrap .title-num span {
-        color: #ffffff;
-    }
+
 
 </style>

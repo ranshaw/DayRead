@@ -50,10 +50,16 @@
 <style scoped>
     .container {
         position: fixed;
-        left: 0;
+        left: 50%;
         bottom: 0;
         z-index: 9999;
         width: 100%;
+        max-width: 750px;
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+        transform: translateX(-50%);
     }
 
     .container > ul {

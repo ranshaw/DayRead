@@ -131,10 +131,31 @@ async function newsList(...arg) {
    await  new Promise((resolve,reject) => {
 	request(url,(error,res,body) => {
 	  function artiList (data) {
-		resolve({
-		  code:0,
-		  info:data
-		})
+	    let newsList = [];
+	    if(data) {
+		  data.list.forEach((v) => {
+
+			if(v.picInfo.length > 0) {
+			  newsList.push({
+				title:v.title,
+				link:v.link,
+				time:v.ptime,
+				source:v.source,
+				picInfo:v.picInfo
+			  })
+			}
+		  });
+		  resolve({
+			code:0,
+			info:newsList
+		  })
+		} else {
+		  resolve({
+			code:1,
+			info:'请求数据不存在！'
+		  })
+		}
+
 	  }
 	  if(!error && res.statusCode === 200) {
 		eval(body);

@@ -48,7 +48,8 @@ module.exports  = function (Vue,axios ) {
 	JS:'/weixin/account?key=前端JavaScript',
 	QX:'/weixin/account?key=技术最前线',
 	foreign:'/weixin/account?key=前端外刊评论',
-	wangYiSlides:'/wangYi/slides'
+	wangYiSlides:'/wangYi/slides',
+	wangYiNews:'/wangyi/news'
   }
 
   };

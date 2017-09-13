@@ -1,15 +1,23 @@
-
+body {
+    max-width: 750px;
+    margin: 0 auto;
+}
 /*字体*/
+.f24 {
+    font-size: .24rem;
+}
 .f26 {
-    font-size:0.26rem;
+    font-size:.26rem;
 }
 .f28 {
-    font-size:0.28rem;
+    font-size:.28rem;
 }
 .f32 {
-    font-size:0.32rem;
+    font-size:.32rem;
 }
-
+.f34 {
+    font-size:.34rem;
+}
 .app-flex1{
     flex:1;
 }
@@ -31,3 +39,17 @@
 .app-space-between{
     justify-content:space-between;
 }
+
+.fl {
+    float: left;
+}
+.fr {
+    float:right;
+}
+.clearFix:after {
+    content: '';
+    display: block;
+    clear: both;
+    overflow: hidden;
+}
+
