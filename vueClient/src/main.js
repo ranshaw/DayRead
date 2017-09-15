@@ -6,20 +6,11 @@ import router from './router/index'
 import api from './lib/api'
 import axios from 'axios'
 import regeneratorRuntime from './lib/regeneratorRuntime'
-import MintUi from 'mint-ui'
-import 'mint-ui/lib/style.css'
 import store from './store/index'
-
 
 Vue.use(regeneratorRuntime);
 Vue.use(api,axios);
-Vue.use(MintUi);
 Vue.config.productionTip = false;
-
-router.afterEach(route => {
-
-});
-
 
 new Vue({
   el: '#app',
@@ -28,3 +19,4 @@ new Vue({
   components: { App },
   store
 });
+

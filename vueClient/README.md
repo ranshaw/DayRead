@@ -1,4 +1,4 @@
-# shopping
+# DayRead 
 
 > A Vue.js project
 

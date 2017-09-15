@@ -56,7 +56,11 @@
         -ms-text-overflow: ellipsis;
         text-overflow: ellipsis;*/
         display: block;
-
+        display: -webkit-box;
+        -webkit-line-clamp:2;
+        overflow: hidden;
+        -webkit-line-break:auto;
+        -webkit-box-orient:vertical;
     }
     .title a:visited {
         color: #7e8c8d;

@@ -26,10 +26,6 @@
 </script>
 
 <style scoped>
-    .swipeWrap {
-        margin-top: 1.7rem;
-    }
-
     .swipeWrap > div {
         height: 3.8rem;
     }

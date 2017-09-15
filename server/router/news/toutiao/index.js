@@ -4,38 +4,67 @@
 
 const request = require('request');
 
+let  newsList = [],
+	 hour;
+
 async function touTiaoNewsList(...arg) {
   let news,
 	  res = arg[0].response,
 	  url;
   url = 'http://m.toutiao.com/list/?tag=__all__&ac=wap&count=40&format=json_raw&as=A115E9AACE25A18&cp=59AEC57AC1184E1';
 
-  await  new Promise((resolve,reject) => {
+  let hourNow = new Date().getHours();
+  if(newsList.length > 0 && hour === hourNow) {
+	news = {
+	  code:0,
+	  info:newsList
+	}
+  } else {
 
-	(function getNewsList() {
-	  request(url,(error,res,body) => {
+	await  new Promise((resolve,reject) => {
 
-		if(!error && res.statusCode === 200) {
-		  resolve({
-			code:0,
-			info:JSON.parse(body)
-		  })
-		} else {
-		  getNewsList();
-		 /* reject({
-			code:1,
-			info:`获取数据失败${error}`
-		  })*/
-		}
-	  })
-	})()
+	  (function getNewsList() {
+		request(url,(error,res,body) => {
 
-  }).then((val) => {
-	news = val;
-  },(err) => {
-	news = err;
-  });
+		  if(!error && res.statusCode === 200) {
 
+
+			body = JSON.parse(body);
+			body.data.forEach((v) => {
+
+			  newsList.push({
+				title:v.title,
+				link:v.article_url,
+				time:v.datetime,
+				source:v.source,
+				picInfo:[{
+				  url:v.media_info.avatar_url
+				}]
+			  })
+
+			});
+
+			resolve({
+			  code:0,
+			  info:newsList
+			})
+		  } else {
+			getNewsList();
+			/* reject({
+			 code:1,
+			 info:`获取数据失败${error}`
+			 })*/
+		  }
+		})
+	  })()
+
+	}).then((val) => {
+	  news = val;
+	  hour = new Date().getHours();
+	},(err) => {
+	  news = err;
+	});
+  }
 
   res && (res.body = news);
 

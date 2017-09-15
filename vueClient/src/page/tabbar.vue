@@ -57,18 +57,18 @@
     }
 
     .mint-header-title {
-        font-size: 36rem / @font-base-size;
-    }
+          font-size: 36rem / @font-base-size !important;
+      }
 
     .mint-header {
         height: 80rem / @font-base-size;
         max-width: 750px;
         margin: 0 auto;
-        background-color: #d81e06
+        background-color: #d81e06 !important;
     }
 
     .mint-button-text {
-        font-size: 28rem / @font-base-size;
+        font-size: 28rem / @font-base-size !important;
     }
 
     .mint-tab-container .mint-tab-container-wrap {

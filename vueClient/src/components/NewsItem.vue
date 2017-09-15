@@ -1,54 +1,74 @@
 <template>
 
-    <div v-if="item.picInfo.length == 1">
-        <a class="clearFix" :href="item.link">
-            <div class="newsItem-left">
-                <img  :src="item.picInfo[0].url" alt="">
+    <ul
+            class="newsItem f32"
+            v-infinite-scroll="loadMore"
+            infinite-scroll-disabled="loading"
+            infinite-scroll-immediate-check="loading"
+            infinite-scroll-distance="10">
+        <li  v-for="item in newsList">
+            <div v-if="item.picInfo.length == 1">
+                <a class="clearFix" :href="item.link">
+                    <div class="newsItem-left">
+                        <img  :src="item.picInfo[0].url" alt="">
+                    </div>
+                    <div class="newsItem-right">
+                        <h5 class="newsItem-right-top">{{item.title}}</h5>
+                        <div class="newsItem-right-bot">
+                            <span class="left">{{item.time}}</span>
+                            <span class="right">{{item.source}}</span>
+                        </div>
+                    </div>
+                </a>
             </div>
-            <div class="newsItem-right">
-                <h5 class="newsItem-right-top">{{item.title}}</h5>
-                <div class="newsItem-right-bot">
-                    <span class="left">{{item.time}}</span>
-                    <span class="right">{{item.source}}</span>
-                </div>
+            <div class="newsItem-3pic " v-else>
+
+                <a class="clearFix" :href="item.link">
+                    <h5 class="newsItem-3pic-top f34">{{item.title}}</h5>
+                    <div  class="newsItem-imgs-wrap">
+                        <img v-for="(v,index) in item.picInfo" class="left" :src="v.url" alt="">
+                    </div>
+
+                    <div class="newsItem-3pic-bot f24">
+                        <span class="fl">{{item.time}}</span>
+                        <span class="fr">{{item.source}}</span>
+                    </div>
+
+                </a>
+
             </div>
-        </a>
-    </div>
-    <div class="newsItem-3pic " v-else>
+        </li>
+    </ul>
 
-        <a class="clearFix" :href="item.link">
-            <h5 class="newsItem-3pic-top f34">{{item.title}}</h5>
-            <div  class="newsItem-imgs-wrap">
-                <img v-for="(v,index) in item.picInfo" class="left" :src="v.url" alt="">
-            </div>
-
-            <div class="newsItem-3pic-bot f24">
-                <span class="fl">{{item.time}}</span>
-                <span class="fr">{{item.source}}</span>
-            </div>
-
-        </a>
-
-    </div>
 
 </template>
 
 <script>
     export default({
-      props:['item']
+      props:['newsList'],
+      data () {
+        return {
+		  loading:false
+        }
+      },
+      methods:{
+		loadMore () {
+		  console.log('到底了')
+        }
+      }
     })
 </script>
 
 <style>
-    /*.newsItem {
+    .newsItem {
         background: #f6f6f6;
         margin-bottom:1rem;
     }
-    .newsItem>div {
+    .newsItem>li {
         padding:.2rem 0;
         border-bottom:1px solid #e5e5e5;
         margin:0 .3rem;
-    }*/
+    }
     .newsItem-left {
         float: left;
         width: 27%;

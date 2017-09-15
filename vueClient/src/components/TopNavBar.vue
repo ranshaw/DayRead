@@ -15,6 +15,7 @@
 <script>
   import BScroll from 'better-scroll';
   import {mapActions} from 'vuex'
+  import { Navbar ,TabItem } from 'mint-ui'
   export default({
 	props: ['titleList', 'selected','type'],
 	data () {
@@ -35,6 +36,10 @@
 		return this.titleList.length < 5 ? '100%' : 'auto'
 	  }
 	},
+    components:{
+	  'mt-navbar':Navbar,
+      'mt-tab-item':TabItem
+    },
     watch:{
 	  selectedNow:function () {
 	    console.log('上一个状态',this.$store.state.selectedNow);

@@ -42,7 +42,7 @@ export default new Router({
 	  component: News
 	},
 	{
-	  path: '/movies',
+	  path: '/movies/:title',
 	  name: 'movies',
 	  component: Movies
 	}
