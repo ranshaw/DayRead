@@ -1,29 +1,32 @@
 <template>
     <div class="content">
 
-        <top-nav-bar :titleList="titleList" :selected="initSelected" :type="type"></top-nav-bar>
+        <!--<top-nav-bar v-on:preSelected="getAniName" :titleList="titleList" :selected="initSelected" :type="type"></top-nav-bar>-->
+        <top-nav-bar  :titleList="titleList" :selected="initSelected" :type="type"></top-nav-bar>
+        <transition :name="animateName">
 
-        <ul
-                v-infinite-scroll="loadMore"
-                infinite-scroll-disabled="loading"
-                infinite-scroll-immediate-check="loading"
-                infinite-scroll-distance="10">
-            <li v-for="item in blogsList">
-                <blog-item :blogItems="item"></blog-item>
-            </li>
-        </ul>
+            <ul     v-if="show"
+                    v-infinite-scroll="loadMore"
+                    infinite-scroll-disabled="loading"
+                    infinite-scroll-immediate-check="loading"
+                    infinite-scroll-distance="10">
+                <li v-for="item in blogsList">
+                    <blog-item :blogItems="item"></blog-item>
+                </li>
+            </ul>
+
+        </transition>
         <div class="loading" v-show="!blogsList.length || loading">
             <mt-spinner type="fading-circle" :size="60"></mt-spinner>
         </div>
         <div v-show="noMore" class="noMore f32">
             没有更多的了
         </div>
-
     </div>
 </template>
 
 <script>
-  import { Spinner , InfiniteScroll  } from 'mint-ui';
+  import {Spinner, InfiniteScroll} from 'mint-ui';
   import BScroll from 'better-scroll';
   import BlogItem from './BlogItem.vue';
   import TopNavBar from './TopNavBar.vue'
@@ -43,12 +46,14 @@
 		blogsList: [],                       //当前展示的数据
 		blogs: {},                           //储存已经请求过的数据
 		loading: false,
+		show:false,
+        animateName:'BounceSlideLeft',
 		noMore: false
 	  }
 	},
 	computed: {
 	  ...mapState({
-		selected: 'selectedNow'
+		selected: 'selectedNow',
 	  })
 	},
 	components: {
@@ -67,7 +72,10 @@
 			this.$store.dispatch('saveLists', {
 			  type: this.type,
 			  lists: this.blogs
-			})
+			});
+			/*进入动画开启*/
+            this.show = true;
+
 		  } else {
 
 		  }
@@ -113,10 +121,18 @@
 	  updateData () {
 		this.blogsList = [];
 		this.noMore = false;
+		/*还原动画*/
+		this.show = false;
           /*本地有储存从本地拿数据，没有就请求*/
 		this.blogs = this.$store.state[`${this.type}Lists`];
 		if (this.blogs[this.selected]) {
 		  this.blogsList = this.blogs[this.selected];
+            /*进入动画开启,异步动画才能执行*/
+		  setTimeout(() => {
+
+			this.show = true;
+          },0)
+
 		} else {
 		  this.getList(this.path[this.selected])
 		}
@@ -128,12 +144,34 @@
 		if (this.blogs[this.selected]) {
 		  this.getPrevList();
 		}
-	  }
+	  },
+      getAniName:function (...arg) {
+        let preSelected = arg[0],
+            nowSelected = arg[1],
+            nowSelectedIndex,
+            preSelectedIndex;
+
+        this.titleList.forEach((v,i) => {
+
+          if(v.id === nowSelected) {
+			nowSelectedIndex = i;
+          } else if (v.id === preSelected) {
+			preSelectedIndex = i;
+          }
+        });
+
+        if(nowSelectedIndex < preSelectedIndex) {
+          this.animateName = 'BounceSlideRight'
+        } else {
+		  this.animateName = 'BounceSlideLeft'
+        }
+
+      }
 	},
 	watch: {
 	  selected: {
 		handler: function () {
-		  this.updateData()
+		  this.updateData();
 		},
 		deep: true
 	  }
@@ -202,8 +240,6 @@
         border: none;
     }
 
-
-
     .loading {
         padding-top: 0.5rem;
         display: flex;
@@ -213,6 +249,6 @@
 
     .noMore {
         margin-top: 0.2rem;
-        margin-bottom: 0.5rem;
+        margin-bottom: 1.5rem;
     }
 </style>

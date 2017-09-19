@@ -28,16 +28,12 @@ router.get('/blog/sfPrev',sfPrev);
 
 /*新闻*/
 const { slides,newsList } = require('./news/wangyi/index');
-const { sougou }          = require('./news/sougou/index');
-const { baidu }          = require('./news/baidu/index');
-const { weibo }          = require('./news/weibo/index');
+const { hot }          = require('./news/hot/index');
 const { touTiaoNewsList }       = require('./news/toutiao/index');
 
 router.get('/wangYi/slides',slides);
 router.get('/wangYi/news',newsList);
-router.get('/hot/baidu',baidu);
-router.get('/hot/weibo',weibo);
-router.get('/hot/sougou',sougou);
+router.get('/hot',hot);
 router.get('/toutiao/news',touTiaoNewsList);
 
 /*电影*/

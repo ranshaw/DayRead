@@ -9,8 +9,7 @@ let $ = require('cheerio'),
 	{ parseBody } = require('../../lib/lib');
 
 async function sougou(...arg) {
-  let res = arg[0].response,
-	  content,
+  let content,
 	  resBody;
 
   await  parseBody(url).then((val) => {
@@ -23,7 +22,7 @@ async function sougou(...arg) {
 
 	  resBody = parseList(lists);
 
-  res.body = resBody ;
+  return resBody ;
 
 }
 

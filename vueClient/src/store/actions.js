@@ -11,5 +11,8 @@ export default {
 	},
     saveLists({ commit },lists) {
 	  commit('saveLists',lists)
+	},
+    getAnimateName ({ commit } ,animateName) {
+	  commit('getAnimateName',animateName)
 	}
 }

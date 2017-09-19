@@ -29,7 +29,27 @@
 	  }),
       isSelected:function () {
 		this.changeSelected(this.selectedNow);
-      }
+      },
+	  getAniName:function (preSelected,nowSelected) {
+		let nowSelectedIndex,
+			preSelectedIndex;
+
+		this.titleList.forEach((v,i) => {
+
+		  if(v.id === nowSelected) {
+			nowSelectedIndex = i;
+		  } else if (v.id === preSelected) {
+			preSelectedIndex = i;
+		  }
+		});
+
+		if(nowSelectedIndex < preSelectedIndex) {
+		  this.$store.dispatch('getAnimateName','BounceSlideRight')
+		} else {
+		  this.$store.dispatch('getAnimateName','BounceSlideLeft')
+		}
+
+	  }
 	},
 	computed: {
 	  wrapWid () {
@@ -43,6 +63,8 @@
     watch:{
 	  selectedNow:function () {
 	    console.log('上一个状态',this.$store.state.selectedNow);
+//	    this.$emit('preSelected',this.$store.state.selectedNow,this.selectedNow);
+        this.getAniName(this.$store.state.selectedNow,this.selectedNow);
         this.$router.push(this.selectedNow);
 	    this.isSelected();
       },
@@ -75,6 +97,7 @@
     .mint-navbar {
         overflow: auto;
         width: 100%;
+        max-width: 750px;
         border-bottom: 1px solid #eee;
         position: fixed;
         z-index: 1;

@@ -5,7 +5,7 @@
 
 const { refreshWx } = require('./router/weixin/');
 const schedule      = require('node-schedule');
-
+const { refreshHot }= require('./router/news/hot');
 
 
 module.exports = function () {
@@ -18,9 +18,11 @@ module.exports = function () {
   schedule.scheduleJob(rule, function(){
 
 	refreshWx();
+	refreshHot();
 	console.log('初始化数据中...')
 
   });
   // refreshWx();
+  // refreshHot();
 };
 

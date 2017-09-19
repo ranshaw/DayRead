@@ -11,11 +11,12 @@ import getters from './getters'
 Vue.use(Vuex);
 
 const state = {
-  selectedNow:'',
-  oldBlogRoute:'',
-  oldWxRoute:'',
-  blogLists:{},
-  wxLists:{}
+  selectedNow:'',    //当前选中的topNav项
+  oldBlogRoute:'',   //博客页面选中topNav的路由
+  oldWxRoute:'',     //公众号页面选中topNav的路由
+  blogLists:{},      //博客页面已浏览的数据
+  wxLists:{},        //公众号页面已浏览的数据
+  animateName:''     //动画名称
 };
 
 export default new Vuex.Store({

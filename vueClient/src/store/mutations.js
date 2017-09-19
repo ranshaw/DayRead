@@ -4,7 +4,7 @@
 
 export default {
 	changeSelected (state,selectedNow) {
-	  console.log('当前',selectedNow)
+	  console.log('当前',selectedNow);
 	  state.selectedNow = selectedNow;
 	},
   	saveRoute (state,{ path,type }) {
@@ -12,5 +12,8 @@ export default {
 	},
     saveLists (state,{type,lists}) {
 	  state[`${type}Lists`] = lists;
+	},
+    getAnimateName (state, animateName) {
+	  state.animateName = animateName
 	}
 }

@@ -5,7 +5,8 @@
             blog和wx两个组件不能共存，不然一个组件滚动时会触发另一个组件的事件
         </keep-alive>-->
 
-        <router-view></router-view>
+            <router-view></router-view>
+
 
         <Bottom-nav></Bottom-nav>
     </div>
@@ -76,4 +77,5 @@
         margin-bottom: 0.6rem;
 
     }
+
 </style>

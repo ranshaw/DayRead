@@ -7,12 +7,23 @@
         ></t-top-nav>
 
         <t-swipe-news :swipeList="swipeList"></t-swipe-news>
-        <t-news-item :newsList="newsList"></t-news-item>
 
-        <div class="loading" v-show="!swipeList.length || loading">
+        <transition :name="animateName">
+            <component
+                    v-if="show"
+                    v-bind:is="currentView"
+                    :newsList="newsList"
+                    :hotList="hotList"
+            >
+            </component>
+        </transition>
+
+
+
+        <div class="loading" v-show="loading">
             <mt-spinner type="fading-circle" :size="60"></mt-spinner>
         </div>
-        <div v-show="noMore" class="noMore f32">
+        <div v-show="noMore || hotList.length" class="noMore f32">
             没有更多的了
         </div>
 
@@ -25,16 +36,19 @@
   import SwipeNews from '../../components/SwipeNews.vue'
   import NewsItem from '../../components/NewsItem.vue'
   import {mapState} from 'vuex'
+  import hotItem from '../../components/HotItem.vue'
 
   export default ({
 	data () {
 	  return {
 		swipeList: [],
 		newsList: [],
+        hotList:[],
 		initSelected: 'wangYi',
 		WYNewsPage: 9,
-		loading: false,
+		loading: true,
 		noMore: false,
+		currentView:NewsItem,
 		titleList: [
 		  {title: '网易', id: 'wangYi', page: 1},
 		  {title: '头条', id: 'touTiao', page: 1},
@@ -54,7 +68,8 @@
 			this.toReq('wangYiSlides').then((res) => {
 
 			  if (res.status === 200 && res.data.code === 0) {
-				this.swipeList = res.data.info
+				this.swipeList = res.data.info;
+				this.loading = false
 			  }
 			}, (err) => {
 
@@ -69,12 +84,19 @@
           case 'touTiao':
             this.toReq('touTiao').then((res) => {
 			  if (res.status === 200 && res.data.code === 0) {
+
 				this.newsList = res.data.info;
+				this.loading = false
 			  }
             });
             break;
           case 'hot':
-
+            this.toReq('hot').then((res) => {
+			  if (res.status === 200 && res.data.code === 0) {
+				 this.loading = false;
+				  this.hotList = res.data.info;
+			  }
+            });
             break;
 		}
 
@@ -85,7 +107,13 @@
 	},
     watch:{
 	  selected:function () {
-	    this.getNews()
+	    this.getNews();
+
+        if(this.selected === 'hot') {
+		  this.currentView = hotItem
+        } else {
+		  this.currentView = NewsItem
+        }
       },
       deep:true
     },
@@ -93,7 +121,7 @@
 	  't-header': Header,
 	  't-top-nav': TopNavBar,
 	  't-swipe-news': SwipeNews,
-	  't-news-item': NewsItem
+	   't-hot-item':hotItem
 	},
 	mounted () {
 	  this.getNews();
@@ -125,5 +153,8 @@
         margin: 0 .3rem;
     }
 
-
+    .noMore {
+        margin-top: 0.2rem;
+        margin-bottom: 1.5rem;
+    }
 </style>

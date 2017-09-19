@@ -16,7 +16,10 @@ body {
     font-size:.32rem;
 }
 .f34 {
-    font-size:.34rem;
+     font-size:.34rem;
+ }
+.f46 {
+    font-size:.46rem;
 }
 .app-flex1{
     flex:1;
@@ -52,4 +55,51 @@ body {
     clear: both;
     overflow: hidden;
 }
+
+/*动画*/
+
+@keyframes BounceSlideRight {
+    0% {
+        transform: translateX(-150%);
+    }
+    50%{
+        transform: translateX(8%);
+    }
+    65%{
+        transform: translateX(-4%);
+    }
+    80%{
+        transform: translateX(4%);
+    }
+    95%{
+        transform: translateX(-2%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+.BounceSlideRight-enter-active {animation:BounceSlideRight .8s 0s 1 both}
+
+@keyframes BounceSlideLeft {
+    0% {
+        transform: translateX(150%);
+    }
+    50%{
+        transform: translateX(-8%);
+    }
+    65%{
+        transform: translateX(4%);
+    }
+    80%{
+        transform: translateX(-4%);
+    }
+    95%{
+        transform: translateX(2%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+.BounceSlideLeft-enter-active{animation:BounceSlideLeft .8s 0s 1 both}
 

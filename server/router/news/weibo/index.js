@@ -9,8 +9,7 @@ let $ = require('cheerio'),
 	{ parseBody,getContent } = require('../../lib/lib');
 
 async function weibo(...arg) {
-  let res = arg[0].response,
-	  content,
+  let content,
 	  resBody;
 
   await  getContent(url).then((val) => {
@@ -23,7 +22,7 @@ async function weibo(...arg) {
       console.log(lists.length);
 	  resBody = parseList(lists);
 
-  res.body = resBody ;
+  return resBody ;
 
 }
 

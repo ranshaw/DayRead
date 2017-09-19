@@ -8,9 +8,8 @@ let $ = require('cheerio'),
 	url = 'http://top.baidu.com',
 	{ parseBody,getContent } = require('../../lib/lib');
 
-async function baidu(...arg) {
-  let res = arg[0].response,
-	  content,
+async function baidu() {
+  let content,
 	  resBody;
 
   await  getContent(url).then((val) => {
@@ -23,7 +22,7 @@ async function baidu(...arg) {
 
 	  resBody = parseList(lists);
 
-  res.body = resBody ;
+   return resBody ;
 
 }
 

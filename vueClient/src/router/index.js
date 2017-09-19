@@ -22,7 +22,7 @@ export default new Router({
 	  name: 'blog',
 	  component: Blog,
 	  beforeEnter (to,from,next)  {
-	   /* console.log(to);
+	    /*console.log(to);
 	    console.log(from);*/
 		next()
 	  }
@@ -35,6 +35,10 @@ export default new Router({
 	  path: '/wx/:title',
 	  name: 'wx',
 	  component: WeXin
+	},
+	{
+	  path:'/news',
+	  redirect:'/news/wangYi'
 	},
 	{
 	  path: '/news/:title',
