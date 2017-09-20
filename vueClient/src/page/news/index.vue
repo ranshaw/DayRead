@@ -8,16 +8,15 @@
 
         <t-swipe-news :swipeList="swipeList"></t-swipe-news>
 
-        <transition :name="animateName">
+        <transition :name="$store.state.animateName">
             <component
-                    v-if="show"
+                    v-if="!loading"
                     v-bind:is="currentView"
                     :newsList="newsList"
                     :hotList="hotList"
             >
             </component>
         </transition>
-
 
 
         <div class="loading" v-show="loading">

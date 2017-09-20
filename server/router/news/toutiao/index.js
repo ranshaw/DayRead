@@ -32,15 +32,19 @@ async function touTiaoNewsList(...arg) {
 			body = JSON.parse(body);
 			body.data.forEach((v) => {
 
-			  newsList.push({
-				title:v.title,
-				link:v.article_url,
-				time:v.datetime,
-				source:v.source,
-				picInfo:[{
-				  url:v.media_info.avatar_url
-				}]
-			  })
+			  try {
+				newsList.push({
+				  title:v.checkKey('title'),
+				  link:v.checkKey('article_url'),
+				  time:v.checkKey('datetime'),
+				  source:v.checkKey('source'),
+				  picInfo:[{
+					url:v.checkKey('media_info') && v.checkKey('media_info').checkKey('avatar_url')
+				  }]
+				})
+			  } catch (e) {
+			    console.log(e)
+			  }
 
 			});
 

@@ -3,7 +3,7 @@
 
         <!--<top-nav-bar v-on:preSelected="getAniName" :titleList="titleList" :selected="initSelected" :type="type"></top-nav-bar>-->
         <top-nav-bar  :titleList="titleList" :selected="initSelected" :type="type"></top-nav-bar>
-        <transition :name="animateName">
+        <transition :name="$store.state.animateName">
 
             <ul     v-if="show"
                     v-infinite-scroll="loadMore"
@@ -47,7 +47,6 @@
 		blogs: {},                           //储存已经请求过的数据
 		loading: false,
 		show:false,
-        animateName:'BounceSlideLeft',
 		noMore: false
 	  }
 	},
@@ -74,7 +73,10 @@
 			  lists: this.blogs
 			});
 			/*进入动画开启*/
-            this.show = true;
+			setTimeout(() => {
+			  this.show = true;
+            },1000)
+
 
 		  } else {
 

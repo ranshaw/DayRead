@@ -42,7 +42,8 @@ module.exports =  function (name,initType) {
       return new Promise((resolve,reject) => {
 
 		table.find(obj,(err,docs) => {
-
+			console.log(`错误1${err}`)
+			console.log(`错误2${docs}`)
 		  if(docs.length > 0) {
 			resolve({
 			  code:0,

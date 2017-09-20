@@ -16,7 +16,7 @@ const state = {
   oldWxRoute:'',     //公众号页面选中topNav的路由
   blogLists:{},      //博客页面已浏览的数据
   wxLists:{},        //公众号页面已浏览的数据
-  animateName:''     //动画名称
+  animateName:'BounceSlideLeft'     //动画名称
 };
 
 export default new Vuex.Store({

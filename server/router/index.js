@@ -37,9 +37,11 @@ router.get('/hot',hot);
 router.get('/toutiao/news',touTiaoNewsList);
 
 /*电影*/
-const { douban } = require('./movies/douban/index');
+const { hotMovies } = require('./movies/douban/hotMovies');
+const { newMovies } = require('./movies/douban/newMovies');
 
-router.get('/movies/douban',douban);
+router.get('/movies/hotMovies',hotMovies);
+router.get('/movies/newMovies',newMovies);
 
 /*公众号*/
 const {account,refreshWx} = require('./weixin/index');

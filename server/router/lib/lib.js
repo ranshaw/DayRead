@@ -87,6 +87,22 @@ function addZero (d) {
 
   return str[1] ? str : '0' + str;
 }
+/*检查一个对象中是否有某个属性*/
+Object.prototype.checkKey = function (...arg) {
+
+  if(typeof arg[0] === 'string') {
+	let val;
+	Object.keys(this).forEach((v) => {
+	  if(v === arg[0]) {
+		val = this[v]
+	  }
+	});
+	return val;
+  } else {
+	return 'undefined';
+  }
+};
+
 
 module.exports = {
   getContent,

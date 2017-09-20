@@ -46,6 +46,10 @@ export default new Router({
 	  component: News
 	},
 	{
+	  path:'/movies',
+	  redirect:'/movies/douBan'
+	},
+	{
 	  path: '/movies/:title',
 	  name: 'movies',
 	  component: Movies
