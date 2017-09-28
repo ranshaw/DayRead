@@ -54,7 +54,7 @@
     }
 
     .mint-tab-item-label {
-        font-size: 30rem / @font-base-size;
+        font-size: 30rem / @font-base-size !important;
     }
 
     .mint-header-title {

@@ -62,7 +62,6 @@
 <style>
     .newsItem {
         background: #f6f6f6;
-        margin-bottom:1rem;
     }
     .newsItem>li {
         padding:.2rem 0;

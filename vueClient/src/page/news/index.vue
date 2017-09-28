@@ -6,8 +6,7 @@
                 :titleList="titleList"
         ></t-top-nav>
 
-        <t-swipe-news :swipeList="swipeList"></t-swipe-news>
-
+        <t-swipe-news v-if="selected === 'wangYi'" :swipeList="swipeList"></t-swipe-news>
         <transition :name="$store.state.animateName">
             <component
                     v-if="!loading"
@@ -18,11 +17,10 @@
             </component>
         </transition>
 
-
         <div class="loading" v-show="loading">
             <mt-spinner type="fading-circle" :size="60"></mt-spinner>
         </div>
-        <div v-show="noMore || hotList.length" class="noMore f32">
+        <div v-show="(noMore || hotList.length) && !loading" class="noMore f32">
             没有更多的了
         </div>
 
@@ -46,7 +44,7 @@
 		initSelected: 'wangYi',
 		WYNewsPage: 9,
 		loading: true,
-		noMore: false,
+		noMore: true,
 		currentView:NewsItem,
 		titleList: [
 		  {title: '网易', id: 'wangYi', page: 1},
@@ -68,7 +66,7 @@
 
 			  if (res.status === 200 && res.data.code === 0) {
 				this.swipeList = res.data.info;
-				this.loading = false
+                this.loading = false
 			  }
 			}, (err) => {
 
@@ -83,16 +81,16 @@
           case 'touTiao':
             this.toReq('touTiao').then((res) => {
 			  if (res.status === 200 && res.data.code === 0) {
-
 				this.newsList = res.data.info;
-				this.loading = false
+				  this.loading = false
 			  }
             });
             break;
           case 'hot':
             this.toReq('hot').then((res) => {
 			  if (res.status === 200 && res.data.code === 0) {
-				 this.loading = false;
+
+				  this.loading = false;
 				  this.hotList = res.data.info;
 			  }
             });
@@ -106,6 +104,10 @@
 	},
     watch:{
 	  selected:function () {
+	    setTimeout(() => {
+		  this.loading = true;
+        },0);
+
 	    this.getNews();
 
         if(this.selected === 'hot') {
@@ -134,22 +136,6 @@
         display: flex;
         justify-content: center;
         margin-bottom: 0.5rem;
-    }
-
-    .noMore {
-        margin-top: 0.2rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .newsItem {
-        background: #f6f6f6;
-        margin-bottom: 1rem;
-    }
-
-    .newsItem > li {
-        padding: .2rem 0;
-        border-bottom: 1px solid #e5e5e5;
-        margin: 0 .3rem;
     }
 
     .noMore {

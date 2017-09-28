@@ -52,6 +52,8 @@ module.exports  = function (Vue,axios ) {
 	wangYiNews:'/wangyi/news',
 	touTiao:'/toutiao/news',
 	hot:'/hot',
+	hotMovies:'/movies/hotMovies',
+	newMovies:'/movies/newMovies',
   }
 
   };

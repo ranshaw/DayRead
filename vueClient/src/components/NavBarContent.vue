@@ -75,8 +75,7 @@
 			/*进入动画开启*/
 			setTimeout(() => {
 			  this.show = true;
-            },1000)
-
+            },100)
 
 		  } else {
 
@@ -131,7 +130,6 @@
 		  this.blogsList = this.blogs[this.selected];
             /*进入动画开启,异步动画才能执行*/
 		  setTimeout(() => {
-
 			this.show = true;
           },0)
 
