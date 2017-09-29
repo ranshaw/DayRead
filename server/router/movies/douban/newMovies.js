@@ -18,9 +18,20 @@ async function newMovies(...arg) {
   await  new Promise((resolve,reject) => {
 	request(url,(error,res,body) => {
 	  function jsonp2 (data) {
+
+		let resData = [];
+		data.subject_collection_items.forEach((v) => {
+		  resData.push({
+			url:v.url && v.url,
+			title:v.title && v.title,
+			imgUrl:v.cover.url && v.cover.url,
+			rating:v.rating && v.rating.value.toString()
+		  })
+		});
+
 		resolve({
 		  code:0,
-		  info:data
+		  info:resData
 		})
 	  }
 	  if(!error && res.statusCode === 200) {

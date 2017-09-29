@@ -15,5 +15,8 @@ export default {
 	},
     getAnimateName (state, animateName) {
 	  state.animateName = animateName
+	},
+    saveDetailPathFrom (state,path) {
+	  state.detailFromPath = path
 	}
 }

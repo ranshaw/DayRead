@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <h2 class="title">
-            <a :href="blogItems.originUrl">{{blogItems.title}}</a>
+            <a href="javascript:">{{blogItems.title}}</a>
         </h2>
         <div>
             <p class="time">

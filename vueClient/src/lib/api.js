@@ -9,7 +9,7 @@ module.exports  = function (Vue,axios ) {
   /*配置axios*/
   const instance = axios.create({
 	baseURL: 'http://192.168.1.238:3002',
-	timeout: 5000,
+	timeout: 10000,
 	headers: {
 	  "content-type":"application/json",
 	}
@@ -19,13 +19,14 @@ module.exports  = function (Vue,axios ) {
 
     	let _options = {
     	  method:"get",
+		  baseURL: 'http://192.168.1.238:3002',
 		};
         Object.assign(_options,options);
-
      return  instance({
          method:_options.method,
 		 url:path,
-		 data:data
+		 data:data,
+	     baseURL:_options.baseURL
 	   })
 
 	};

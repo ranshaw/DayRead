@@ -6,9 +6,9 @@
             infinite-scroll-disabled="loading"
             infinite-scroll-immediate-check="loading"
             infinite-scroll-distance="10">
-        <li  v-for="item in newsList">
+        <li @click="toDetail(item)"  v-for="item in newsList">
             <div v-if="item.picInfo.length == 1">
-                <a class="clearFix" :href="item.link">
+                <a class="clearFix" href="javascript:">
                     <div class="newsItem-left">
                         <img  :src="item.picInfo[0].url" alt="">
                     </div>
@@ -23,7 +23,7 @@
             </div>
             <div class="newsItem-3pic " v-else>
 
-                <a class="clearFix" :href="item.link">
+                <a class="clearFix" href="javascript:">
                     <h5 class="newsItem-3pic-top f34">{{item.title}}</h5>
                     <div  class="newsItem-imgs-wrap">
                         <img v-for="(v,index) in item.picInfo" class="left" :src="v.url" alt="">
@@ -54,6 +54,16 @@
       methods:{
 		loadMore () {
 		  console.log('到底了')
+        },
+		toDetail (item) {
+		  let nowPath = this.$route.path;
+		  this.$router.push({
+			path: `${nowPath}/detail`,
+			query:{
+			  title:item.title,
+			  url:item.link
+			}
+		  })
         }
       }
     })

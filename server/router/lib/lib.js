@@ -88,7 +88,7 @@ function addZero (d) {
   return str[1] ? str : '0' + str;
 }
 /*检查一个对象中是否有某个属性*/
-Object.prototype.checkKey = function (...arg) {
+function checkKey (...arg) {
 
   if(typeof arg[0] === 'string') {
 	let val;
@@ -108,5 +108,6 @@ module.exports = {
   getContent,
   parseBody,
   parseResult,
-  formatDate
+  formatDate,
+  checkKey
 };

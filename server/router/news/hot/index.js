@@ -4,9 +4,9 @@
 let { baidu }  = require('../baidu/index.js');
 let { sougou } = require('../sougou/index');
 let { weibo }  = require('../weibo/index');
-const db = require('../../../mongoose/lib');
+const createTable = require('../../../mongoose/lib');
 
-let table = db('hot',{
+let table = createTable('hot',{
   type:String,
   info:Array
 });

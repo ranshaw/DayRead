@@ -25,12 +25,16 @@ async function account(...arg) {
 	  searchUrl = `http://weixin.sogou.com/weixin?type=1&s_from=input&query=${searchKey}&ie=utf8&_sug_=n&_sug_type_=`,
 	  resBody;
 
+
+
   articleList = await table.find({type: req.query.key}).then((res) => {
 
 	return res
+  },(err) => {
+    return err
   });
 
-  if(articleList.info[0].articleList.length > 0) {
+  if(articleList.info[0].articleList && articleList.info[0].articleList.length > 0) {
 	res.body = {
 	  code:0,
 	  info:articleList.info[0].articleList

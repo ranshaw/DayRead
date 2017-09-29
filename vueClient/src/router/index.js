@@ -4,6 +4,8 @@ import  Blog  from '../page/blog/index.vue'
 import  WeXin from '../page/wx/index.vue'
 import News from '../page/news/index.vue'
 import Movies from '../page/movies/index.vue'
+import MoviesMore from '../components/MoviesMore.vue'
+import Detail from '../components/Detail.vue'
 
 Vue.use(Router);
 
@@ -53,6 +55,16 @@ export default new Router({
 	  path: '/movies/:title',
 	  name: 'movies',
 	  component: Movies
+	},
+	{
+	  path:'/movies/douBan/more',
+	  name:'moviesMore',
+	  component:MoviesMore,
+	},
+	{
+	  path:'/:path/:path/detail',
+	  name:'detail',
+	  component:Detail
 	}
   ]
 })

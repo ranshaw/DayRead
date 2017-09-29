@@ -10,7 +10,7 @@
                     infinite-scroll-disabled="loading"
                     infinite-scroll-immediate-check="loading"
                     infinite-scroll-distance="10">
-                <li v-for="item in blogsList">
+                <li @click="toDetail(item)" v-for="item in blogsList">
                     <blog-item :blogItems="item"></blog-item>
                 </li>
             </ul>
@@ -166,6 +166,17 @@
 		  this.animateName = 'BounceSlideLeft'
         }
 
+      },
+	  toDetail:function (item) {
+	    console.log(item);
+	    let nowPath = this.$route.path;
+	    this.$router.push({
+	      path: `${nowPath}/detail`,
+          query:{
+	        title:item.title,
+            url:item.originUrl
+          }
+        })
       }
 	},
 	watch: {

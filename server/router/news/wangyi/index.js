@@ -5,13 +5,13 @@
 const { getContent } = require('../../lib/lib'),
       $              = require('cheerio'),
       parseList      = require('./getList'),
-	  news           = require('../../../mongoose/lib'),
+	  createTable    = require('../../../mongoose/lib'),
 	  request        = require('request');
 
 let newsTable,
 	isFirst = true;
 
-newsTable = news('news',{
+newsTable = createTable('news',{
   type:String,
   lists:Object,
   hour:Number

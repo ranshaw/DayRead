@@ -14,5 +14,8 @@ export default {
 	},
     getAnimateName ({ commit } ,animateName) {
 	  commit('getAnimateName',animateName)
+	},
+    saveDetailPathFrom ({ commit },path) {
+	  commit('saveDetailPathFrom',path)
 	}
 }

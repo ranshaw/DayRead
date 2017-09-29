@@ -19,9 +19,7 @@
     })
 </script>
 
-<style scoped>
-    .mint-button-text a {
-        color: #fffd08;
-    }
+<style >
+
 
 </style>

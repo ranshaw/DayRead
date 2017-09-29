@@ -5,18 +5,20 @@
 
 const {db,mongoose} = require('./index');
 
+let Schema = mongoose.Schema;
+
+db.on('error',() => {
+  console.log('连接数据库失败！')
+});
+db.once('open',() => {
+  console.log('连接数据库成功！');
+});
+
 module.exports =  function (name,initType) {
 
   let table = null;
-
-  db.on('error',() => {
-	console.log('连接数据库失败！')
-  });
-  db.once('open',() => {
-    console.log('连接数据库成功！');
-  });
-  table = mongoose.model(`${name}`,initType);
-
+  initType = new Schema(initType);
+  table = mongoose.model(name,initType);
   return {
     add:(obj={}) => {
       let addNew = new table(obj);
@@ -42,9 +44,8 @@ module.exports =  function (name,initType) {
       return new Promise((resolve,reject) => {
 
 		table.find(obj,(err,docs) => {
-			console.log(`错误1${err}`)
-			console.log(`错误2${docs}`)
-		  if(docs.length > 0) {
+
+		  if(docs && docs.length > 0) {
 			resolve({
 			  code:0,
 			  info:docs

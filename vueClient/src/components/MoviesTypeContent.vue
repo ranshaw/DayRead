@@ -1,13 +1,13 @@
 <template>
     <div class="movies-types">
         <h3 class="f34">{{title}}</h3>
-        <router-link :to="">更多</router-link>
+        <!--<router-link :to="">更多</router-link>-->
         <t-movies-item></t-movies-item>
     </div>
 </template>
 
 <script>
-  import MoviesItem from 'components/MoviesItem.vue'
+  import MoviesItem from './MoviesItem.vue'
   export default ({
 	data () {
         return {

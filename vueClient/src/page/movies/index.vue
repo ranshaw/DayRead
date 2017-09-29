@@ -23,7 +23,7 @@
         't-movies-type':MoviesTypeContent
       },
       mounted () {
-        this.api()
+
       }
     })
 </script>

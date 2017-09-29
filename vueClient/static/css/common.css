@@ -103,3 +103,8 @@ body {
 
 .BounceSlideLeft-enter-active{animation:BounceSlideLeft .8s 0s 1 both}
 
+/*全局更改组件的样式*/
+.mint-button-text a {
+    color: #fffd08;
+}
+
