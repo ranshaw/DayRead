@@ -18,5 +18,13 @@ export default {
 	},
     saveDetailPathFrom (state,path) {
 	  state.detailFromPath = path
+	},
+    saveMoviesList (state,data) {
+
+	  if(data.hotMovies) {
+		state.hotMoviesList =  state.hotMoviesList.concat(data.hotMovies)
+	  } else {
+		state.newMoviesList =  state.newMoviesList.concat(data.newMovies)
+	  }
 	}
 }

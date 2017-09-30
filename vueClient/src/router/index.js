@@ -7,6 +7,7 @@ import Movies from '../page/movies/index.vue'
 import MoviesMore from '../components/MoviesMore.vue'
 import Detail from '../components/Detail.vue'
 
+
 Vue.use(Router);
 
 export default new Router({

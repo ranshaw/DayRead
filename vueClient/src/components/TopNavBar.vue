@@ -95,7 +95,6 @@
     @font-base-size : 100px;
 
     .mint-navbar {
-        overflow: auto;
         width: 100%;
         max-width: 750px;
         border-bottom: 1px solid #eee;

@@ -17,5 +17,8 @@ export default {
 	},
     saveDetailPathFrom ({ commit },path) {
 	  commit('saveDetailPathFrom',path)
+	},
+    saveMoviesList ({ commit },data) {
+	  commit('saveMoviesList',data)
 	}
 }

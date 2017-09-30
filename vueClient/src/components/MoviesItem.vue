@@ -14,15 +14,17 @@
 
 <script>
     export default({
-//      props:['moviesItem'],
+      props: {
+		moviesItem:Object
+      },
       data () {
         return {
-            moviesItem:{
+          /*  moviesItem:{
 			  "url": "https://m.douban.com/movie/subject/24753477/",
 			  "title": "蜘蛛侠：英雄归来",
 			  "imgUrl": "https://qnmob2.doubanio.com/view/movie_poster_cover/lpst/public/p2497756471.jpg?imageView2/0/q/80/w/9999/h/400/format/jpg",
 			  "rating": 9.0
-			}
+			}*/
         }
       },
       computed:{
@@ -70,6 +72,7 @@
 }
 .movies-item img {
     width:2rem;
+    height:2.8rem;
 }
 .star {
     display: flex;
