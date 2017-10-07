@@ -21,11 +21,12 @@ async function hotMovies(...arg) {
 
         let resData = [];
         data.subject_collection_items.forEach((v) => {
+
           resData.push({
             url:v.url && v.url,
             title:v.title && v.title,
             imgUrl:v.cover.url && v.cover.url,
-			rating:v.rating && v.rating.value.toString()
+			rating:v.rating && (v.rating.value.toString()[1] ? v.rating.value.toString() : v.rating.value + '.0')
           })
         });
         resolve({

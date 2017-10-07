@@ -5,13 +5,12 @@
             <div @click="getMore" class="movies-types-more f34" >更多</div>
         </header>
 
-        <div class="betterScroll">
-            <div :style="{width:contentWidth}">
+        <div class="betterScroll" :class="scrollClass">
+            <div ref="scrollWrap">
                 <t-movies-item  class="item" :moviesItem="item" v-for="item in moviesList"></t-movies-item>
             </div>
 
         </div>
-
 
     </div>
 </template>
@@ -23,7 +22,8 @@
     props:{
       moviesList:Array,
       title:String,
-      pathName:String
+      pathName:String,
+	  scrollClass:String
     },
 	data () {
         return {
@@ -49,14 +49,17 @@
         return `${this.moviesList.length * 2}rem`
       }
     },
+    watch:{
+	  moviesList:function () {
+		setTimeout(  () => {
+		  new BScroll(`.${this.scrollClass}`, {
+			click: true,
+			scrollX: true
+		  });
+		},10);
+      }
+    },
     mounted () {
-        /*需要在rem计算完成后执行*/
-	  setTimeout(function () {
-		new BScroll('.betterScroll', {
-		  click: true,
-		  scrollX: true
-		});
-	  }, 1000);
     }
   })
 </script>
@@ -78,6 +81,12 @@
         width:100%;
         max-width: 750px;
         display: flex;
+        /*overflow-x: auto;
+        overflow-y:hidden ;*/
+    }
+    .betterScroll::-webkit-scrollbar {
+         width: 0;
+         height: 0;
     }
     .betterScroll>div {
         white-space:nowrap;
@@ -90,6 +99,9 @@
     .betterScroll .item:first-child {
         margin-left: .4rem;
 
+    }
+    .betterScroll .item:last-child {
+        margin-right:.2rem ;
     }
 
 </style>

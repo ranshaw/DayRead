@@ -20,5 +20,14 @@ export default {
 	},
     saveMoviesList ({ commit },data) {
 	  commit('saveMoviesList',data)
+	},
+    saveWangYiSlides ({ commit },data) {
+	  commit('saveWangYiSlides',data)
+	},
+    saveWangYiNews ({ commit },data) {
+	  commit('saveWangYiNews',data)
+	},
+    saveTouTiao ({ commit },data) {
+	  commit('saveTouTiao',data)
 	}
 }

@@ -15,6 +15,7 @@
                 </li>
             </ul>
 
+
         </transition>
         <div class="loading" v-show="!blogsList.length || loading">
             <mt-spinner type="fading-circle" :size="60"></mt-spinner>

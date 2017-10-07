@@ -40,12 +40,12 @@
 	  return {
 		swipeList: [],
 		newsList: [],
-        hotList:[],
+		hotList: [],
 		initSelected: 'wangYi',
 		WYNewsPage: 9,
 		loading: true,
 		noMore: true,
-		currentView:NewsItem,
+		currentView: NewsItem,
 		titleList: [
 		  {title: '网易', id: 'wangYi', page: 1},
 		  {title: '头条', id: 'touTiao', page: 1},
@@ -55,46 +55,80 @@
 	},
 	computed: {
 	  ...mapState({
-        selected:'selectedNow'
-      })
+		selected: 'selectedNow'
+	  })
 	},
 	methods: {
 	  getNews: function () {
 		switch (this.selected) {
 		  case 'wangYi':
-			this.toReq('wangYiSlides').then((res) => {
+			let wangYiSlides = this.$store.state.wangYiSlides,
+				wangYiNews   = this.$store.state.wangYiNews;
 
-			  if (res.status === 200 && res.data.code === 0) {
-				this.swipeList = res.data.info;
-                this.loading = false
-			  }
-			}, (err) => {
+			if (wangYiSlides.length > 0) {
+			  this.swipeList = wangYiSlides;
+			  this.loading = false;
+			} else {
+			  this.toReq('wangYiSlides').then((res) => {
+				if (res.status === 200 && res.data.code === 0) {
+				  this.swipeList = res.data.info;
+				  this.loading = false;
+				  this.$store.dispatch('saveWangYiSlides', this.swipeList)
+				}
+			  }, (err) => {
 
-			});
-			this.toReq(`wangYiNews`, `?page=${this.WYNewsPage}`).then((res) => {
+			  });
+			}
 
+			if (wangYiNews.length > 0) {
+			  this.newsList = wangYiNews;
+
+			} else {
+			  this.toReq(`wangYiNews`, `?page=${this.WYNewsPage}`).then((res) => {
+
+				if (res.status === 200 && res.data.code === 0) {
+				  this.newsList = res.data.info;
+				  this.$store.dispatch('saveWangYiNews', this.newsList)
+				}
+			  });
+			}
+
+			break;
+		  case 'touTiao':
+            let touTiaoList = this.$store.state.touTiao;
+
+           /* if(touTiaoList.length > 0) {
+              this.newsList = touTiaoList;
+              this.loading = false;
+            } else {
+			  this.toReq('touTiao').then((res) => {
+				if (res.status === 200 && res.data.code === 0) {
+				  this.newsList = res.data.info;
+				  this.$store.dispatch('saveTouTiao',this.newsList);
+				  this.loading = false
+				}
+			  });
+            }
+*/
+			this.toReq('touTiao').then((res) => {
 			  if (res.status === 200 && res.data.code === 0) {
 				this.newsList = res.data.info;
+				this.$store.dispatch('saveTouTiao',this.newsList);
+				this.loading = false
+			  }
+			});
+
+
+			break;
+		  case 'hot':
+			this.toReq('hot').then((res) => {
+			  if (res.status === 200 && res.data.code === 0) {
+
+				this.loading = false;
+				this.hotList = res.data.info;
 			  }
 			});
 			break;
-          case 'touTiao':
-            this.toReq('touTiao').then((res) => {
-			  if (res.status === 200 && res.data.code === 0) {
-				this.newsList = res.data.info;
-				  this.loading = false
-			  }
-            });
-            break;
-          case 'hot':
-            this.toReq('hot').then((res) => {
-			  if (res.status === 200 && res.data.code === 0) {
-
-				  this.loading = false;
-				  this.hotList = res.data.info;
-			  }
-            });
-            break;
 		}
 
 	  },
@@ -102,27 +136,27 @@
 		return this.api(this.path[path] + page)
 	  }
 	},
-    watch:{
-	  selected:function () {
-	    setTimeout(() => {
+	watch: {
+	  selected: function () {
+		setTimeout(() => {
 		  this.loading = true;
-        },0);
+		}, 0);
 
-	    this.getNews();
+		this.getNews();
 
-        if(this.selected === 'hot') {
+		if (this.selected === 'hot') {
 		  this.currentView = hotItem
-        } else {
+		} else {
 		  this.currentView = NewsItem
-        }
-      },
-      deep:true
-    },
+		}
+	  },
+	  deep: true
+	},
 	components: {
 	  't-header': Header,
 	  't-top-nav': TopNavBar,
 	  't-swipe-news': SwipeNews,
-	   't-hot-item':hotItem
+	  't-hot-item': hotItem
 	},
 	mounted () {
 	  this.getNews();

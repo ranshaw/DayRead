@@ -2,8 +2,8 @@
     <div class="movies-wrap">
         <t-header tit="电 影"></t-header>
         <div class="movies-content">
-            <t-movies-type class="section" :title="hotTitle" pathName="hotMovies" :moviesList="$store.state.hotMoviesList"></t-movies-type>
-            <t-movies-type class="section" :title="newTitle" pathName="newMovies" :moviesList="$store.state.newMoviesList"></t-movies-type>
+            <t-movies-type class="section" scrollClass="scrollHot" :title="hotTitle" pathName="hotMovies" :moviesList="$store.state.hotMoviesList"></t-movies-type>
+            <t-movies-type class="section" scrollClass="scrollNew" :title="newTitle" pathName="newMovies" :moviesList="$store.state.newMoviesList"></t-movies-type>
         </div>
 
     </div>
@@ -59,6 +59,8 @@
         position: absolute;
         width:100%;
         top:1.2rem;
+        overflow: hidden;
+        padding-bottom: 1rem;
     }
     .movies-content .section {
         margin-bottom:.6rem

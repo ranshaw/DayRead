@@ -1,14 +1,18 @@
 <template>
     <div class="movies-item">
-        <a :href="moviesItem.url">
+        <router-link :to="routerLink">
             <img :src="moviesItem.imgUrl" alt="">
             <h5 class="f28">{{moviesItem.title}}</h5>
             <div class="star clearFix">
-                <span class="rating-star" :class="item" v-for="item in starList"> </span>
+                <div v-if="moviesItem.rating">
+                    <span class="rating-star" :class="item" v-for="item in starList"> </span>
+                    <span class="f26">{{moviesItem.rating}}</span>
+                </div>
 
-                <span class="f26">{{moviesItem.rating}}</span>
+                <div class="f26"  v-else>暂无评分</div>
+
             </div>
-        </a>
+        </router-link>
     </div>
 </template>
 
@@ -25,6 +29,7 @@
 			  "imgUrl": "https://qnmob2.doubanio.com/view/movie_poster_cover/lpst/public/p2497756471.jpg?imageView2/0/q/80/w/9999/h/400/format/jpg",
 			  "rating": 9.0
 			}*/
+          routerLink:`/movies/douBan/detail?title=${this.moviesItem.title}&url=${this.moviesItem.url}`
         }
       },
       computed:{
@@ -83,11 +88,11 @@
     float: left;
 }
 .movies-item h5 {
+    width:100%;
     color: #000;
     text-align: center;
     overflow: hidden;
     text-overflow: ellipsis;
-    display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
 }

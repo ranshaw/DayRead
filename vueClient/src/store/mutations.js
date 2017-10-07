@@ -26,5 +26,14 @@ export default {
 	  } else {
 		state.newMoviesList =  state.newMoviesList.concat(data.newMovies)
 	  }
+	},
+    saveWangYiSlides (state,data) {
+	  state.wangYiSlides = data
+	},
+    saveWangYiNews (state,data) {
+	  state.wangYiNews = data
+	},
+    saveTouTiao (state,data) {
+	  state.touTiao = data
 	}
 }

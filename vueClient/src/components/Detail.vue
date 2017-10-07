@@ -13,6 +13,9 @@
         <div class="loading" v-show="loading">
             <mt-spinner type="fading-circle" :size="60"></mt-spinner>
         </div>
+     <!--   <div class="f32" v-show="loading">
+            请点击右上方“源网站”，跳转到原页面进行浏览。
+        </div>-->
 
     </div>
 
@@ -35,6 +38,7 @@
     methods:{
       isLoaded () {
         console.log('下载完成');
+
         this.loading = false
       }
     },
