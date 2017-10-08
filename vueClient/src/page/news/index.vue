@@ -9,7 +9,7 @@
         <t-swipe-news v-if="selected === 'wangYi'" :swipeList="swipeList"></t-swipe-news>
         <transition :name="$store.state.animateName">
             <component
-                    v-if="!loading"
+                    v-show="!loading"
                     v-bind:is="currentView"
                     :newsList="newsList"
                     :hotList="hotList"
@@ -97,9 +97,10 @@
 		  case 'touTiao':
             let touTiaoList = this.$store.state.touTiao;
 
-           /* if(touTiaoList.length > 0) {
+            if(touTiaoList.length > 0) {
               this.newsList = touTiaoList;
               this.loading = false;
+
             } else {
 			  this.toReq('touTiao').then((res) => {
 				if (res.status === 200 && res.data.code === 0) {
@@ -109,25 +110,23 @@
 				}
 			  });
             }
-*/
-			this.toReq('touTiao').then((res) => {
-			  if (res.status === 200 && res.data.code === 0) {
-				this.newsList = res.data.info;
-				this.$store.dispatch('saveTouTiao',this.newsList);
-				this.loading = false
-			  }
-			});
-
-
 			break;
 		  case 'hot':
-			this.toReq('hot').then((res) => {
-			  if (res.status === 200 && res.data.code === 0) {
+            let hotList = this.$store.state.hot;
 
-				this.loading = false;
-				this.hotList = res.data.info;
-			  }
-			});
+            if(hotList.length > 0) {
+              this.loading = false;
+              this.hotList = hotList
+            } else {
+			  this.toReq('hot').then((res) => {
+				if (res.status === 200 && res.data.code === 0) {
+
+				  this.loading = false;
+				  this.hotList = res.data.info;
+				  this.$store.dispatch('saveHot',this.hotList)
+				}
+			  });
+            }
 			break;
 		}
 
@@ -138,10 +137,7 @@
 	},
 	watch: {
 	  selected: function () {
-		setTimeout(() => {
-		  this.loading = true;
-		}, 0);
-
+        this.loading = true;
 		this.getNews();
 
 		if (this.selected === 'hot') {
@@ -160,6 +156,7 @@
 	},
 	mounted () {
 	  this.getNews();
+	  console.log('loading状态2',this.loading)
 	}
   })
 </script>

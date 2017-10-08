@@ -29,5 +29,8 @@ export default {
 	},
     saveTouTiao ({ commit },data) {
 	  commit('saveTouTiao',data)
+	},
+    saveHot ({ commit },data) {
+	  commit('saveHot',data)
 	}
 }

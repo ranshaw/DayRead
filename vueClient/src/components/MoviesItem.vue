@@ -95,6 +95,7 @@
     text-overflow: ellipsis;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
+    display: -webkit-box;
 }
 .rating-star {
     display:  inline-block;

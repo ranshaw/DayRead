@@ -44,11 +44,19 @@
       },
       mounted () {
         this.title = this.$route.query.title;
-        let path = this.$route.query.api;
+        let path = this.$route.query.api,
+            type = this.$route.query.type,
+            oldMoviesList = this.$store.state[`${type}List`];
+        console.log(`${type}List`)
+
+		this.itemList = oldMoviesList;
 
         this.api(`${path}?page=${1}`).then((res) => {
             if(res.status === 200 && res.data.code === 0) {
-                this.itemList = res.data.info
+			  res.data.info.forEach((v) => {
+				this.itemList.push(v);
+              })
+
             }
         })
       }

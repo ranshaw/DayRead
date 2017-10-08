@@ -35,5 +35,8 @@ export default {
 	},
     saveTouTiao (state,data) {
 	  state.touTiao = data
+	},
+    saveHot (state,data) {
+	  state.hot = data
 	}
 }

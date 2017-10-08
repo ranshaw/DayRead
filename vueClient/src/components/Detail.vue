@@ -7,7 +7,7 @@
             <mt-button  slot="right"><a class="f32" :href="url">源网站</a></mt-button>
         </mt-header>
         <div class="detail-iframe-wrap">
-            <iframe @load="isLoaded" :src="url" frameborder="0" class="detail-iframe"></iframe>
+            <iframe @load="isLoaded" :src="url" frameborder="0" width="100%" height="100%"  class="detail-iframe"></iframe>
         </div>
 
         <div class="loading" v-show="loading">
@@ -63,11 +63,8 @@
         right: 0;
         bottom:1rem;
         top:.8rem;
-    }
-    .detail-iframe {
-        width:100%;
-        height:100%;
-        overflow: hidden;
+        width:7.5rem;
+
     }
     .loading {
         padding-top: 0.5rem;

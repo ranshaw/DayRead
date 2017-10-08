@@ -36,7 +36,8 @@
 	      path:'/movies/douBan/more',
           query:{
             title:this.title,
-            api:this.path[this.pathName]
+            api:this.path[this.pathName],
+            type:this.pathName
           }
         })
       }

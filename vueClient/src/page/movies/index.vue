@@ -2,8 +2,8 @@
     <div class="movies-wrap">
         <t-header tit="电 影"></t-header>
         <div class="movies-content">
-            <t-movies-type class="section" scrollClass="scrollHot" :title="hotTitle" pathName="hotMovies" :moviesList="$store.state.hotMoviesList"></t-movies-type>
-            <t-movies-type class="section" scrollClass="scrollNew" :title="newTitle" pathName="newMovies" :moviesList="$store.state.newMoviesList"></t-movies-type>
+            <t-movies-type class="section" scrollClass="scrollHot" :title="hotTitle" pathName="hotMovies" :moviesList="hotMoviesList"></t-movies-type>
+            <t-movies-type class="section" scrollClass="scrollNew" :title="newTitle" pathName="newMovies" :moviesList="newMoviesList"></t-movies-type>
         </div>
 
     </div>
@@ -19,7 +19,9 @@
        data () {
          return {
 		    hotTitle:'影院热映',
-            newTitle:'新片速递'
+            newTitle:'新片速递',
+		    hotMoviesList:[],
+		    newMoviesList:[]
          }
        },
       components:{
@@ -29,27 +31,39 @@
       },
       mounted () {
          /*影院热映*/
-        this.api(this.path.hotMovies).then((res) => {
-          if(res.status === 200 && res.data.code === 0) {
+         let hotMovies = this.$store.state.hotMoviesList,
+             newMovies = this.$store.state.newMoviesList;
+         console.log(hotMovies.length)
+         if(hotMovies.length > 0) {
+            this.hotMoviesList = hotMovies
+         } else {
+		   this.api(this.path.hotMovies).then((res) => {
+			 if(res.status === 200 && res.data.code === 0) {
+			   this.hotMoviesList = res.data.info;
+			   this.$store.dispatch('saveMoviesList',{
+				 hotMovies:res.data.info
+			   })
+			 }
+		   },(err) => {
+			 console.log(`获取数据失败${err}`)
+		   });
+         }
 
-            this.$store.dispatch('saveMoviesList',{
-              hotMovies:res.data.info
-            })
-          }
-        },(err) => {
-          console.log(`获取数据失败${err}`)
-        });
         /*新片速递*/
-		this.api(this.path.newMovies).then((res) => {
-		  if(res.status === 200 && res.data.code === 0) {
-
-			this.$store.dispatch('saveMoviesList',{
-			  newMovies:res.data.info
-            })
-		  }
-		},(err) => {
-		  console.log(`获取数据失败${err}`)
-		})
+        if(newMovies.length > 0) {
+          this.newMoviesList = newMovies
+        } else {
+		  this.api(this.path.newMovies).then((res) => {
+			if(res.status === 200 && res.data.code === 0) {
+			  this.newMoviesList = res.data.info;
+			  this.$store.dispatch('saveMoviesList',{
+				newMovies:res.data.info
+			  })
+			}
+		  },(err) => {
+			console.log(`获取数据失败${err}`)
+		  })
+        }
       }
     })
 </script>
