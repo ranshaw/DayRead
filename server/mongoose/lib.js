@@ -7,8 +7,10 @@ const {db,mongoose} = require('./index');
 
 let Schema = mongoose.Schema;
 
-db.on('error',() => {
-  console.log('连接数据库失败！')
+mongoose.set('debug', true);
+
+db.on('error',(err) => {
+  console.log('连接数据库失败！'+err)
 });
 db.once('open',() => {
   console.log('连接数据库成功！');

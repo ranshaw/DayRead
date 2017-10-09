@@ -8,7 +8,6 @@ module.exports  = function (Vue,axios ) {
 
   /*配置axios*/
   const instance = axios.create({
-	baseURL: 'http://192.168.1.238:3002',
 	timeout: 10000,
 	headers: {
 	  "content-type":"application/json",
@@ -19,7 +18,7 @@ module.exports  = function (Vue,axios ) {
 
     	let _options = {
     	  method:"get",
-		  baseURL: 'http://192.168.1.238:3002',
+          baseURL: /*'http://localhost:3002',*/'http://www.dayread.top',
 		};
         Object.assign(_options,options);
      return  instance({

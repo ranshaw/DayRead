@@ -22,7 +22,7 @@ module.exports = function () {
 	console.log('初始化数据中...')
 
   });
-  // refreshWx();
-  // refreshHot();
+  refreshWx();
+  refreshHot();
 };
 
