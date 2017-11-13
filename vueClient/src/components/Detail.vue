@@ -64,7 +64,7 @@
         bottom:1rem;
         top:.8rem;
         width:7.5rem;
-
+        margin:0 auto;
     }
     .loading {
         padding-top: 0.5rem;
