@@ -18,7 +18,7 @@ module.exports  = function (Vue,axios ) {
 
     	let _options = {
     	  method:"get",
-          baseURL: /*'http://localhost:3002',*/'http://www.dayread.top',
+          baseURL: 'http://localhost:3002',//'http://www.dayread.top',
 		};
         Object.assign(_options,options);
      return  instance({
